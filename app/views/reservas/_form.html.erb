@@ -1,0 +1,42 @@
+<%= form_with model: [@cancha, Reserva.new] do |form| %>
+  <% if reserva.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(reserva.errors.count, "error") %> prohibited this reserva from being saved:</h2>
+
+      <ul>
+        <% reserva.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="card" style="width: 30rem;margin:0 auto;">
+  <div class="card-body"><center>
+    <h5 class="card-title">Ingresar los datos de su reserva</h5>
+    <p class="card-text">
+    
+
+      <div class="field form-group">
+        <% form.label :fecha_reserva %><br />
+        <%= form.date_select :fecha_reserva%>
+      </div>
+    
+      <div class="field form-group">
+        <%= form.label :horario %><br />
+    <%= form.number_field :horario, min: 1, max: 16  %>
+      </div>
+      <p> Horario: 6:00-22:00</p>
+      <p> Cada bloque horario dura una hora </p>
+      <br />
+      <div class="actions" >
+        <%= form.submit "Reservar",
+        class:"btn btn-primary btn-sm" %>
+      </div>
+
+      </p>
+      </div>
+      </center>
+    </div>
+
+<% end %>

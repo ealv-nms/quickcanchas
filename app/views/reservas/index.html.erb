@@ -1,0 +1,51 @@
+<% if @cancha %>
+<h1>Reservas</h1>
+<%else%>
+<h1>Mis reservas</h1>
+<%end%>
+
+<table class="table">
+  <thead>
+    <tr>
+      <% if current_user.is_mod %>
+      <th scope="col">Id usuario</th>
+      <%end%>
+      <th scope="col">Id cancha</th>
+      <th scope="col">Fecha</th>
+      <th scope="col">Horario</th>
+      <th scope="col">Estado</th>
+      <th scope="col"></th>
+      <th scope="col"></th>
+      <th scope="col"></th>
+      <th scope="col"></th>
+      <% if current_user.is_mod %>
+        <th scope="col"></th>
+        <th scope="col"></th>
+      <%end%>
+    </tr>
+  </thead>
+  <tbody>
+    <% @reservas.each do |reserva| %>
+      <tr>
+        <td scope="row"><%= reserva.cancha_id %></td>
+        <td><%= reserva.fecha_reserva %></td>
+        <td><%= reserva.horario%></td>
+        <td><%= reserva.estado %></td>
+        <% if @cancha %>
+        <td><%= link_to('Unirse', reserva_path(reserva, "reserva[usuario]" => "add"), method: :put) %></td>
+        <% else %>
+        <td><%= link_to 'Ver', reserva %></td>
+        <td><%= link_to 'Editar', edit_reserva_path(reserva) %></td>
+        <td><%= link_to 'Eliminar', reserva, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Ir al chat', reserva_rooms_url(reserva)%></td>
+        <% if current_user.is_mod %>
+          <% if !reserva.is_accepted %>
+            <td><%= link_to('Aceptar reserva', reserva_path(reserva, "reserva[estado]" => 'Aceptado'), method: :put) %></td>
+            <td><%= link_to('Rechazar reserva', reserva_path(reserva, "reserva[estado]" => 'Rechazado'), method: :put) %></td>
+          <%end%>
+        <%end%>
+        <%end%>
+      </tr>
+      <% end %>
+  </tbody>
+</table>

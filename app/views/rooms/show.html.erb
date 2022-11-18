@@ -1,0 +1,73 @@
+<h1>
+  Sala de chat de la reserva <%= @room.reserva_id %>
+</h1>
+
+<div class="row justify-content-center">
+
+
+<div class="col-12 col-md-8">
+  <div class="chat" data-channel-subscribe="room" data-room-id="<%= @room.id %>">
+      <% @room_messages.each do |room_message| %>
+        <div class="chat-message-container">
+          <div class="row no-gutters">
+            <div class="col-auto justify-content-center">
+              
+            </div>
+
+            <div class="col">
+              <div class="message-content">
+                <p class="mb-1">
+                <%= room_message.user.email %>: <%= room_message.message %>
+                </p>
+
+                <div class="text-right">
+                  <small>
+                    <%= room_message.created_at %>
+                  </small>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
+
+
+    <%= simple_form_for @room_message, remote: true do |form| %>
+      <div class="input-group input-group-sm mb-3 justify-content-center">
+        <%= form.input :message, as: :string,
+                                 wrapper: false,
+                                 label: false,
+                                 input_html: {
+                                   class: 'chat-input'
+                                 } %>
+        <div class="input-group-append">
+          <%= form.submit "Send", class: 'btn btn-primary chat-input' %>
+        </div>
+      </div>
+
+      <%= form.input :room_id, as: :hidden %>
+    <% end %>
+  </div>
+</div>
+
+
+<div class="d-none" data-role="message-template">
+  <div class="chat-message-container">
+    <div class="row no-gutters">
+      <div class="col-auto text-center">
+        
+      </div>
+
+      <div class="col">
+        <div class="message-content">
+          <p class="mb-1" data-role="message-text"></p>
+
+          <div class="text-right">
+            <small data-role="message-date"></small>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

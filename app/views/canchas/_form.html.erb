@@ -1,0 +1,43 @@
+<%= form_with(model: cancha, local: true) do |form| %>
+  <% if cancha.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(cancha.errors.count, "error") %> prohibited this cancha from being saved:</h2>
+
+      <ul>
+        <% cancha.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+
+
+<div class="card" style="width: 30rem;margin:0 auto;">
+<div class="card-body"><center>
+  <h5 class="card-title">Ingrese los datos para la nueva cancha</h5>
+  <p class="card-text">
+    <div class="field form-group">
+    <%= form.label :tipo %><br/ >
+    <%= form.text_field :tipo %>
+    </div>
+  
+    <div class="field form-group">
+    <%= form.label :precio %><br />
+    <%= form.number_field :precio %>
+    </div>
+    <br />
+    <div class="field form-group">
+    <%= form.label :descripcion %><br />
+    <%= form.text_field :descripcion %>
+    </div>
+    <br />
+    <div class="actions" >
+      <%= form.submit "Publicar cancha",
+      class:"btn btn-primary btn-sm" %>
+    </div>
+    </p>
+    </div>
+    </center>
+  </div>
+<% end %>

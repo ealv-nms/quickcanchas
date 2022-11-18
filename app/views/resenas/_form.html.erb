@@ -1,0 +1,38 @@
+<%= form_with model: [@cancha, Resena.new] do |form| %>
+  <% if resena.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(resena.errors.count, "error") %> prohibited this resena from being saved:</h2>
+
+      <ul>
+        <% resena.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+
+
+  <div class="card" style="width: 30rem;margin:0 auto;">
+  <div class="card-body"><center>
+    <h5 class="card-title">Ingrese los datos para la reseña de la cancha
+    <p class="card-text">
+      <div class="field form-group">
+      <%= form.label :puntaje %><br />
+      <%= form.number_field :puntaje, min: 1, max: 5 %>
+      </div>
+    
+      <div class="field form-group">
+      <%= form.label :comentario %><br />
+      <%= form.text_area :comentario %>
+      </div>
+      <br />
+      <div class="actions" >
+        <%= form.submit "Publicar reseña",
+        class:"btn btn-primary btn-sm" %>
+      </div>
+      </p>
+      </div>
+      </center>
+    </div>
+<% end %>

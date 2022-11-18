@@ -1,0 +1,42 @@
+<h1> Mi perfil</h1>
+
+
+
+<!------ Include the above in your HEAD tag ---------->
+
+<div class="card" style="width: 60rem;margin:0 auto;">
+    <div class="row justify-content-center">
+        <div class="col-xs-12 col-sm-10 col-md-10 justify-content-center">
+            <div class="well well-sm">
+                <div class="row">
+                    <div class="col-sm-6 col-md-4">
+                        <%= form_for :user do |f|%>
+                            <div class='form-group'>
+                                <%= f.label :profile_picture%>
+                                <%= f.file_field :profile_picture%>
+                                <%= f.submit "Subir foto:", class: 'btn btn-primary' %>
+                            </div>
+                        <%end%>
+                        <img src="" alt="" class="img-rounded img-responsive" />
+                    </div>
+                    <div class="col-sm-6 col-md-8">
+                        <h4>
+                        <%= @user.name %></h4>
+                        <small><cite title="Phone"><i class="bi bi-telephone-fill"></i> <%= @user.phone %></cite></small>
+                        <p>
+                        <i class="bi bi-envelope-fill"> </i><%= @user.email %>
+                            <br />
+                            <i class="bi bi-calendar-event-fill"></i> <%= @user.nacimiento %></p>
+
+
+                            <div class="cart mt-4 align-items-center"> <%= link_to edit_user_registration_url(current_user), class: "btn btn-primary btn-sm" do %>
+                              Editar
+                              <% end %>
+                          </div> 
+  
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

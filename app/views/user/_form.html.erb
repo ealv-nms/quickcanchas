@@ -1,0 +1,60 @@
+<div class="card" style="width: 30rem;margin:0 auto;">
+  <div class="card-body">
+    <h5 class="card-title">Editar perfil</h5>
+    <p class="card-text"><%= form_with(model: user, local: true) do |f| %>
+  <% if user.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(user.errors.count, "error") %> prohibited this user from being saved:</h2>
+
+      <ul>
+        <% user.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+
+  <div class="field form-group">
+        <% f.label :name %><br />
+        <%= f.text_field :name, autofocus: true, autocomplete: "name",
+        class:"form-control",
+        placeholder: "Name"%>
+  </div>
+
+  <div class="field form-group">
+        <% f.label :email %><br />
+        <%= f.email_field :email, autofocus: true, autocomplete: "email",
+        class:"form-control",
+        placeholder: "Email"%>
+  </div>
+
+    <div class="field form-group">
+        <% f.label :phone %><br />
+        <%= f.text_field :phone, autofocus: true, autocomplete: "phone",
+        class:"form-control",
+        placeholder: "Phone"%>
+    </div>
+
+  <div class="field form-group">
+    <% f.label :nacimiento %><br />
+    <%= f.date_field :nacimiento, autofocus: true, autocomplete: "phone",
+    class:"form-control",
+    placeholder: "Nacimiento"%>
+</div>
+
+  <div class="field form-group">
+        <% f.label :password %><br />
+        <%= f.password_field :password, autocomplete: "current-password",
+        class:"form-control",
+        placeholder: "Contraseña"%>
+    </div>
+</br>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
+</div>
+</div>
+
+

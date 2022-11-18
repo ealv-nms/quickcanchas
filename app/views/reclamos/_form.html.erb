@@ -1,0 +1,38 @@
+<%= form_with(model: reclamo, local: true) do |form| %>
+  <% if reclamo.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(reclamo.errors.count, "error") %> prohibited this reclamo from being saved:</h2>
+
+      <ul>
+        <% reclamo.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+
+
+  <div class="card" style="width: 30rem;margin:0 auto;">
+  <div class="card-body"><center>
+    <h5 class="card-title">Ingrese su reclamo
+    <p class="card-text">
+      <div class="field form-group">
+      <%= form.label :titulo %><br />
+      <%= form.text_field :titulo %>
+      </div>
+    
+      <div class="field form-group">
+      <%= form.label :contenido %><br />
+      <%= form.text_area :contenido %>
+      </div>
+      <br />
+      <div class="actions" >
+        <%= form.submit "Publicar reclamo",
+        class:"btn btn-primary btn-sm" %>
+      </div>
+      </p>
+      </div>
+      </center>
+    </div>
+<% end %>

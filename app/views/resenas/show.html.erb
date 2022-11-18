@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>User:</strong>
+  <%= @resena.user_id %>
+</p>
+
+<p>
+  <strong>Cancha:</strong>
+  <%= @resena.cancha_id %>
+</p>
+
+<p>
+  <strong>Puntaje:</strong>
+  <%= @resena.puntaje %>
+</p>
+
+<p>
+  <strong>Comentario:</strong>
+  <%= @resena.comentario %>
+</p>
+
+<p>
+  <strong>Fecha:</strong>
+  <%= @resena.created_at %>
+</p>
+
+<%= link_to 'Edit', edit_resena_path(@resena) %> |
+<%= link_to 'Back', resenas_path %>

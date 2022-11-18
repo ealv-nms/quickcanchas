@@ -1,0 +1,29 @@
+
+<center> <h1>Mis reseñas</h1> </center>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>Cancha</th>
+      <th>Puntaje</th>
+      <th>Comentario</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @resenas.each do |resena| %>
+      <tr>
+        <td><%= resena.cancha_id %></td>
+        <td><%= resena.puntaje %></td>
+        <td><%= resena.comentario %></td>
+        <td><%= link_to 'Editar', edit_resena_path(resena) %></td>
+        <td><%= link_to 'Eliminar', resena, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+
